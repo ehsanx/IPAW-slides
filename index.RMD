@@ -1,0 +1,51 @@
+---
+title: "Finite Sample Properties of Inverse Probability of Adherence Weighted Estimator of the per-Protocol Effect for Sustained Treatment Strategies"
+subtitle: "⚔"
+author: "M. Ehsan. Karim; UBC"
+institute: "The 5th ICSA-Canada Chapter Symposium"
+date: "July 10, 2022; Banff Center"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, chocolate, chocolate-fonts, style.css]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#1c5253",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+#.center[<span style="color:coral">**Quality of proxy information matters.**</span>]
+```
+
+class: full
+
+
+---
+
+# Outline
+
+.center[Slides at [tinyurl.com/](https://tinyurl.com/)]
+
+
+
+---
+
+class: inverse, center, middle
+
+# hdPS
+
+---
+
