@@ -37,7 +37,7 @@ class: full
 
 # Outline
 
-.center[Slides at [tinyurl.com/](https://tinyurl.com/)]
+.center[Slides at [ehsanx.github.io/IPAW-slides/](https://ehsanx.github.io/IPAW-slides/)]
 
 
 
