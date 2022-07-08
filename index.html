@@ -38,22 +38,114 @@ class: center, middle, inverse, title-slide
 
 
 
-class: full
 
-
----
 
 # Outline
 
-.center[Slides at [tinyurl.com/](https://tinyurl.com/)]
+.large[
 
+.center[Slides at [ehsanx.github.io/IPAW-slides/](https://ehsanx.github.io/IPAW-slides/)]
+
+- Lipid trial
+
+]
+
+---
+
+## Lipid trial
+
+.large[
+
+- Outcome: 
+      - coronary heart disease (CHD) death or
+      - non-fatal myocardial infarction
+
+- Exposure: 
+      - cholestyramine or a placebo
+
+- Population: 
+      - people with very high levels of LDL cholesterol,
+      - 35-59 years aged, 
+      - initially free of CHD,
+      - recruited between mid-1973 and mid-1976.
+      
+
+]
+
+---
+
+
+## Lipid trial 
+
+.large[
+
+- 2-armed double-blind RCT
+      - `\(3,550\)` subjects eligible
+      - randomized at 5th visit and 
+      - followed `\(\ge 7\)` years
+
+- Static treatment regime
+
+- Medication adherence 
+      - counts of unused medication packets
+      - satisfactory adherence as `\(\ge 80\%\)`
+      - `\(84.0\%\)` in the treatment arm were nonadherent
+      - `\(77.2\%\)` in the placebo arm.
+
+]
+
+---
+
+## Lipid trial 
+
+
+.large[
+*Baseline prognostic factors*
+
+- baseline risk strata, 
+- age at randomization, 
+- physical activity level at work at baseline, 
+- educational status, and 
+- race.
+
+*Post-randomization prognostic factors*
+
+- 38 time-varying covariates
+]
 
 
 ---
 
-class: inverse, center, middle
+## Adherence adjustment
 
-# hdPS
+**Intention to Treat (ITT)**
+
+- compares randomized to treatment arm vs. control arm
+
+**Naive Per-protocol (Naive PP)**
+
+- artificially censoring when become non-adherent to randomized treatment
+- no covariate adjustment
+
+**Conditional Per-protocol (Adj. PP)**
+
+- B adjusted PP
+- L adjusted PP
+- B+L adjusted PP
+
+**Inverse Probability of (Adherence) Weighted Per-protocol (sIPW PP)**
+
+- IP Weights adjust for bias introduced by artificially censoring
+- L adjusted in IP weights
+- B adjusted in weighted outcome model
+
+---
+
+## Treatment effect estimates
+
+
+
+&lt;img src="images/tableOR.png" width="120%" style="display: block; margin: auto;" /&gt;
 
 ---
 
