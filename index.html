@@ -42,11 +42,13 @@ class: center, middle, inverse, title-slide
 
 .large[
 
-- BC SUPPORT Unit &amp; NSERC
+- Funding
+    - BC SUPPORT Unit 
+    - NSERC
 
 - Joint work with 
-    - Lucy Mosquera
-    - Md. Belal Hossain
+    - Lucy Mosquera (Statistics)
+    - Md. Belal Hossain (Population and Public Health)
 ]
 
 ---
@@ -57,7 +59,19 @@ class: center, middle, inverse, title-slide
 
 .center[Slides at [ehsanx.github.io/IPAW-slides/](https://ehsanx.github.io/IPAW-slides/)]
 
-- Lipid trial
+1. Lipid trial
+
+  - Adherence adjustment methods
+
+  - Understanding Lipid trial results
+
+  - Literature
+
+2. Simulation and results
+
+3. Interpreting Lipid trial results
+
+4. Follow-up work and future directions
 
 ]
 
@@ -128,7 +142,7 @@ class: center, middle, inverse, title-slide
 
 ---
 
-## Adherence adjustment
+## Adherence adjustment methods
 .pull-left[
 .large[**Intention to Treat (ITT)**]
 
@@ -164,23 +178,27 @@ class: center, middle, inverse, title-slide
 
 ---
 
-## Treatment effect estimates
-
-
+.large[
+**Treatment effect estimates**
+]
 
 &lt;img src="images/tableOR.png" width="120%" style="display: block; margin: auto;" /&gt;
 
 .large[
-- low event rate: `\(7.3\%\)`. 
-- differential adherence rate
-- measurement schedule varied
-- true DAG unknown
+- true DAG unknown 
 - unknown whether all adherence predicting factors were measured
+- finite sample size: `\(3,550\)`
+- high non-adherence rate 
+- differential non-adherence: `\(84\%\)` vs. `\(77.2\%\)`
+- low event rate: `\(7.3\%\)` 
+- measurement schedule varied 
+- LOCF was used for imputation 
+
 ]
 
 ---
 
-## Literature search about IPW vs. conditionals
+## Literature search about IPW 
 
 .large[
 - Robins and Finkelstein (2000): 
@@ -188,12 +206,14 @@ class: center, middle, inverse, title-slide
     
 - Hernan and Robins (2017), Murray and Hernan (2016, 2018):
     - Reanalysis; addressing treatment-confounder feedback
-    
-- Young et al. (2019): 
-    - interval censoring simulation: 200K, null treatment effect, differing measurement schedule
-    
+
 - Morden et al. (2011), Latimer et al. (2017, 2018)  
     - estimates sensitive to switching proportions
+    
+- Young et al. (2019): 
+    - interval censoring simulation framework
+    - 200K, 1 DAG, null treatment effect, differing measurement schedule, varying confounding
+  
 ]
 
 ---
@@ -256,6 +276,179 @@ class: center, middle, inverse, title-slide
 *Diag 4(ii)*: A does not affect subsequent L
 
 &lt;img src="images/mainDAG6.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: full-slide-fig, center
+
+## All 8 DAGs
+
+&lt;img src="images/dag.png" width="110%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: full-slide-fig, center
+
+.large[**Bias for different DAGs**]
+
+| &lt;div style="width:290px"&gt;Naive estimates&lt;/div&gt; | &lt;div style="width:290px"&gt;B is measured &lt;/div&gt;| &lt;div style="width:290px"&gt;B is not measured &lt;/div&gt;|
+|---------------------------|---------------------------|---------------------------|
+
+&lt;img src="images/dgmb2.png" width="150%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/dgmblab.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: full-slide-fig, center
+
+.large[**Coverage and MSE when B not measured**]
+
+&lt;img src="images/dgmc2.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/dgmblab.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: full-slide-fig, center, middle
+
+.large[**Bias and SE with increasing non-adherence** 
+
+- B is measured in DAG 1(i)
+]
+
+&lt;img src="images/adb2.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: full-slide-fig, center, middle
+
+.large[**Bias and SE with increasing non-adherence**
+
+- Differential non-adherence
+- B is measured in DAG 1(i)
+]
+
+&lt;img src="images/Non-Adherence Both1i.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: full-slide-fig, center, middle
+
+.large[**Bias and SE with increasing non-adherence** 
+
+- Differential non-adherence
+- B is not measured in DAG 1(i)
+]
+
+&lt;img src="images/Non-Adherence BothU1i.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+
+class: full-slide-fig, center, middle
+
+.large[**Bias and SE with increasing event rate** 
+
+- B is measured in DAG 1(i) from model-based estimates
+- Cumulative survival based estimates were associated with non-convergence
+
+]
+
+&lt;img src="images/Event Rate - Both.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: full-slide-fig, center, middle
+
+.large[**Bias with decreasing measurement frequency** 
+
+- B is measured in DAG 1(i)
+- A and L imputed with LOCF
+
+]
+
+&lt;img src="images/Varying Non-Adherence - Bias - Faceted2.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+.large[
+**Treatment effect estimates**
+]
+
+
+&lt;img src="images/tableOR.png" width="110%" style="display: block; margin: auto;" /&gt;
+
+.large[
+- true DAG unknown (.red[Somewhat resembles with DAG 1 or 2 (i)])
+- unknown whether all adherence predicting factors were measured (.red[sIPW])
+- finite sample size: 3,550 (.red[over 1000 is OK])
+- high non-adherence rate (.red[slightly more biased above 60%])
+- differential non-adherence (.red[slightly more biased; same trend])
+- low event rate: `\(7.3\%\)` (.red[above 1% was OK for model-based])
+- measurement schedule varied (.red[upward bias above 40% n-ad])
+- LOCF was used for imputation (.red[variance of most SD &lt; 2])
+]
+
+
+---
+
+class: full-slide-fig, center, middle
+
+## Recently published article
+
+
+
+&lt;img src="images/rmm.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: full-slide-fig, center, middle
+
+.large[**Coverage with decreasing measurement frequency** 
+
+- .red[B is measured] in DAG 1(i); null effect
+- L imputed with LOCF and MI; .red[MCAR]
+
+]
+
+&lt;img src="images/r53zip.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: full-slide-fig, center, middle
+
+.large[**Coverage with decreasing measurement frequency** 
+
+- .red[B is not measured] in DAG 1(i); null effect
+- L imputed with LOCF and MI; .red[MCAR]
+
+]
+
+&lt;img src="images/r54zip.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+## Future works
+
+.large[
+
+- Compare sIPW per-protocol estimates:
+    - interval censored versus `\(80\%\)` cutpoint
+- Double robust version to address model mis-specification
+
+]
+---
+
+class: center, middle
+
+# Thanks!
+
+### http://ehsank.com/
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
