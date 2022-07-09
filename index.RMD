@@ -33,7 +33,18 @@ style_mono_accent(
 #.center[<span style="color:coral">**Quality of proxy information matters.**</span>]
 ```
 
+## Acknowledgement
 
+.large[
+
+- BC SUPPORT Unit & NSERC
+
+- Joint work with 
+    - Lucy Mosquera
+    - Md. Belal Hossain
+]
+
+---
 
 # Outline
 
@@ -51,12 +62,13 @@ style_mono_accent(
 
 .large[
 
-- Outcome: 
+- Time to event outcome:
       - coronary heart disease (CHD) death or
       - non-fatal myocardial infarction
 
 - Exposure: 
-      - cholestyramine or a placebo
+      - cholestyramine or
+      - placebo
 
 - Population: 
       - people with very high levels of LDL cholesterol,
@@ -95,15 +107,15 @@ style_mono_accent(
 
 
 .large[
-*Baseline prognostic factors*
+*Baseline prognostic factors* (.red[**B**])
 
-- baseline risk strata, 
+- baseline risk strata (ECG, LDL, smoking etc.), 
 - age at randomization, 
 - physical activity level at work at baseline, 
 - educational status, and 
 - race.
 
-*Post-randomization prognostic factors*
+*Post-randomization prognostic factors* (.red[**L**])
 
 - 38 time-varying covariates
 ]
@@ -112,27 +124,38 @@ style_mono_accent(
 ---
 
 ## Adherence adjustment
-
-**Intention to Treat (ITT)**
+.pull-left[
+.large[**Intention to Treat (ITT)**]
 
 - compares randomized to treatment arm vs. control arm
+- no adherence adjustment
+]
 
-**Naive Per-protocol (Naive PP)**
 
-- artificially censoring when become non-adherent to randomized treatment
+.pull-right[
+.large[**Naive Per-protocol (Naive PP)**]
+
+- artificially censoring when become non-adherent 
 - no covariate adjustment
+- alternate version exlcudes patients
+]
 
-**Conditional Per-protocol (Adj. PP)**
+.pull-left[
+.large[**Conditional Per-protocol (Adj. PP)**]
 
 - B adjusted PP
 - L adjusted PP
 - B+L adjusted PP
+]
 
-**Inverse Probability of (Adherence) Weighted Per-protocol (sIPW PP)**
+.pull-right[
+.large[**IP of (Adherence) Weighted Per-protocol (sIPW PP)**]
 
 - IP Weights adjust for bias introduced by artificially censoring
 - L adjusted in IP weights
 - B adjusted in weighted outcome model
+- uIPW is another version with unstabilized weights
+]
 
 ---
 
@@ -144,5 +167,105 @@ style_mono_accent(
 knitr::include_graphics('images/tableOR.png')
 ```
 
+.large[
+- low event rate: $7.3\%$. 
+- differential adherence rate
+- measurement schedule varied
+- true DAG unknown
+- unknown whether all adherence predicting factors were measured
+]
+
 ---
 
+## Literature search about IPW vs. conditionals
+
+.large[
+- Robins and Finkelstein (2000): 
+    - asymptotic consistent if model correctly specified
+    
+- Hernan and Robins (2017), Murray and Hernan (2016, 2018):
+    - Reanalysis; addressing treatment-confounder feedback
+    
+- Young et al. (2019): 
+    - interval censoring simulation: 200K, null treatment effect, differing measurement schedule
+    
+- Morden et al. (2011), Latimer et al. (2017, 2018)  
+    - estimates sensitive to switching proportions
+]
+
+---
+
+## New Simulations
+
+**B affects A and Y directly**: 
+
+*Diag 1(i)*: A affects subsequent L
+
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG.png')
+```
+
+*Diag 1(ii)*: A does not affect subsequent L
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG8.png')
+```
+
+---
+
+
+## New Simulations
+
+**B affects Y directly, but affects A indirectly via L**: 
+
+*Diag 2(i)*: A affects subsequent L
+
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG2.png')
+```
+
+*Diag 2(ii)*: A does not affect subsequent L
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG5.png')
+```
+
+---
+
+## New Simulations
+
+**B affects A and Y directly, but not A**: 
+
+*Diag 3(i)*: A affects subsequent L
+
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG3.png')
+```
+
+*Diag 3(ii)*: A does not affect subsequent L
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG4.png')
+```
+
+---
+
+## New Simulations
+
+**B does not affect A or Y**: 
+
+*Diag 4(i)*: A affects subsequent L
+
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG7.png')
+```
+
+*Diag 4(ii)*: A does not affect subsequent L
+
+```{r echo=FALSE, out.width='70%', fig.align="center"}
+knitr::include_graphics('images/mainDAG6.png')
+```

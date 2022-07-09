@@ -38,7 +38,18 @@ class: center, middle, inverse, title-slide
 
 
 
+## Acknowledgement
 
+.large[
+
+- BC SUPPORT Unit &amp; NSERC
+
+- Joint work with 
+    - Lucy Mosquera
+    - Md. Belal Hossain
+]
+
+---
 
 # Outline
 
@@ -56,12 +67,13 @@ class: center, middle, inverse, title-slide
 
 .large[
 
-- Outcome: 
+- Time to event outcome:
       - coronary heart disease (CHD) death or
       - non-fatal myocardial infarction
 
 - Exposure: 
-      - cholestyramine or a placebo
+      - cholestyramine or
+      - placebo
 
 - Population: 
       - people with very high levels of LDL cholesterol,
@@ -100,15 +112,15 @@ class: center, middle, inverse, title-slide
 
 
 .large[
-*Baseline prognostic factors*
+*Baseline prognostic factors* (.red[**B**])
 
-- baseline risk strata, 
+- baseline risk strata (ECG, LDL, smoking etc.), 
 - age at randomization, 
 - physical activity level at work at baseline, 
 - educational status, and 
 - race.
 
-*Post-randomization prognostic factors*
+*Post-randomization prognostic factors* (.red[**L**])
 
 - 38 time-varying covariates
 ]
@@ -117,27 +129,38 @@ class: center, middle, inverse, title-slide
 ---
 
 ## Adherence adjustment
-
-**Intention to Treat (ITT)**
+.pull-left[
+.large[**Intention to Treat (ITT)**]
 
 - compares randomized to treatment arm vs. control arm
+- no adherence adjustment
+]
 
-**Naive Per-protocol (Naive PP)**
 
-- artificially censoring when become non-adherent to randomized treatment
+.pull-right[
+.large[**Naive Per-protocol (Naive PP)**]
+
+- artificially censoring when become non-adherent 
 - no covariate adjustment
+- alternate version exlcudes patients
+]
 
-**Conditional Per-protocol (Adj. PP)**
+.pull-left[
+.large[**Conditional Per-protocol (Adj. PP)**]
 
 - B adjusted PP
 - L adjusted PP
 - B+L adjusted PP
+]
 
-**Inverse Probability of (Adherence) Weighted Per-protocol (sIPW PP)**
+.pull-right[
+.large[**IP of (Adherence) Weighted Per-protocol (sIPW PP)**]
 
 - IP Weights adjust for bias introduced by artificially censoring
 - L adjusted in IP weights
 - B adjusted in weighted outcome model
+- uIPW is another version with unstabilized weights
+]
 
 ---
 
@@ -147,8 +170,92 @@ class: center, middle, inverse, title-slide
 
 &lt;img src="images/tableOR.png" width="120%" style="display: block; margin: auto;" /&gt;
 
+.large[
+- low event rate: `\(7.3\%\)`. 
+- differential adherence rate
+- measurement schedule varied
+- true DAG unknown
+- unknown whether all adherence predicting factors were measured
+]
+
 ---
 
+## Literature search about IPW vs. conditionals
+
+.large[
+- Robins and Finkelstein (2000): 
+    - asymptotic consistent if model correctly specified
+    
+- Hernan and Robins (2017), Murray and Hernan (2016, 2018):
+    - Reanalysis; addressing treatment-confounder feedback
+    
+- Young et al. (2019): 
+    - interval censoring simulation: 200K, null treatment effect, differing measurement schedule
+    
+- Morden et al. (2011), Latimer et al. (2017, 2018)  
+    - estimates sensitive to switching proportions
+]
+
+---
+
+## New Simulations
+
+**B affects A and Y directly**: 
+
+*Diag 1(i)*: A affects subsequent L
+
+
+&lt;img src="images/mainDAG.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+*Diag 1(ii)*: A does not affect subsequent L
+
+&lt;img src="images/mainDAG8.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+## New Simulations
+
+**B affects Y directly, but affects A indirectly via L**: 
+
+*Diag 2(i)*: A affects subsequent L
+
+
+&lt;img src="images/mainDAG2.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+*Diag 2(ii)*: A does not affect subsequent L
+
+&lt;img src="images/mainDAG5.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## New Simulations
+
+**B affects A and Y directly, but not A**: 
+
+*Diag 3(i)*: A affects subsequent L
+
+
+&lt;img src="images/mainDAG3.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+*Diag 3(ii)*: A does not affect subsequent L
+
+&lt;img src="images/mainDAG4.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## New Simulations
+
+**B does not affect A or Y**: 
+
+*Diag 4(i)*: A affects subsequent L
+
+
+&lt;img src="images/mainDAG7.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+*Diag 4(ii)*: A does not affect subsequent L
+
+&lt;img src="images/mainDAG6.png" width="70%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
