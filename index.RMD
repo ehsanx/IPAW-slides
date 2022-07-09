@@ -42,8 +42,8 @@ style_mono_accent(
     - NSERC
 
 - Joint work with 
-    - Lucy Mosquera (Statistics)
-    - Md. Belal Hossain (Population and Public Health)
+    - **Lucy Mosquera** (Statistics)
+    - **Md. Belal Hossain** (Population and Public Health)
 ]
 
 ---
@@ -336,7 +336,7 @@ class: full-slide-fig, center, middle
 
 .large[**Bias and SE with increasing non-adherence** 
 
-- B is measured in DAG 1(i)
+- .red[B is measured] in DAG 1(i)
 ]
 
 ```{r echo=FALSE, out.width='100%', fig.align="center"}
@@ -350,7 +350,7 @@ class: full-slide-fig, center, middle
 .large[**Bias and SE with increasing non-adherence**
 
 - Differential non-adherence
-- B is measured in DAG 1(i)
+- .red[B is measured] in DAG 1(i)
 ]
 
 ```{r echo=FALSE, out.width='100%', fig.align="center"}
@@ -364,7 +364,7 @@ class: full-slide-fig, center, middle
 .large[**Bias and SE with increasing non-adherence** 
 
 - Differential non-adherence
-- B is not measured in DAG 1(i)
+- .red[B is not measured] in DAG 1(i)
 ]
 
 ```{r echo=FALSE, out.width='100%', fig.align="center"}
@@ -379,8 +379,8 @@ class: full-slide-fig, center, middle
 
 .large[**Bias and SE with increasing event rate** 
 
-- B is measured in DAG 1(i) from model-based estimates
-- Cumulative survival based estimates were associated with non-convergence
+- .red[B is measured] in DAG 1(i) from model-based estimates
+- .red[Cumulative survival based estimates] were associated with non-convergence
 
 ]
 
@@ -394,13 +394,13 @@ class: full-slide-fig, center, middle
 
 .large[**Bias with decreasing measurement frequency** 
 
-- B is measured in DAG 1(i)
+- .red[B is measured] in DAG 1(i)
 - A and L imputed with LOCF
 
 ]
 
-```{r echo=FALSE, out.width='40%', fig.align="center"}
-knitr::include_graphics('images/Varying Non-Adherence - Bias - Faceted2.png')
+```{r echo=FALSE, out.width='35%', fig.align="center"}
+knitr::include_graphics('images/ms.png')
 ```
 
 
@@ -480,6 +480,7 @@ knitr::include_graphics('images/r54zip.png')
 
 - Compare sIPW per-protocol estimates:
     - interval censored versus $80\%$ cutpoint
+
 - Double robust version to address model mis-specification
 
 ]
