@@ -16,6 +16,8 @@ output:
       countIncrementalSlides: false
 ---
 
+class: inverse, middle
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(kableExtra)
@@ -35,13 +37,15 @@ style_mono_accent(
 
 ## Acknowledgement
 
+
+
 .large[
 
 - Funding
     - BC SUPPORT Unit 
     - NSERC
 
-- Joint work with 
+- Joint work with students:
     - **Lucy Mosquera** (Statistics)
     - **Md. Belal Hossain** (Population and Public Health)
 ]
@@ -52,7 +56,7 @@ style_mono_accent(
 
 .large[
 
-.center[Slides at [ehsanx.github.io/IPAW-slides/](https://ehsanx.github.io/IPAW-slides/)]
+
 
 1. Motivating example: .red[Lipid trial]
 
@@ -68,26 +72,23 @@ style_mono_accent(
 
 ]
 
+.footnote[.large[.center[Slides at [ehsanx.github.io/IPAW-slides/](https://ehsanx.github.io/IPAW-slides/)]]]
+
 ---
 
 ## Lipid trial
 
 .large[
 
-- Time to event outcome (.red[Y]):
+- Time to event outcome (.red[**Y**]):
       - coronary heart disease (CHD) death, or
       - or non-fatal myocardial infarction
 
-- Exposure (.red[A]): 
+- Exposure (.red[**A**]): 
       - cholestyramine or
       - placebo
-
-- Population: 
-      - people with very high levels of LDL cholesterol,
-      - 35-59 years aged, 
-      - initially free of CHD,
-      - recruited between mid-1973 and mid-1976.
       
+- Randomized to arms (.red[**Z**])
 
 ]
 
@@ -118,11 +119,7 @@ style_mono_accent(
 .large[
 *Baseline prognostic factors* (.red[**B**])
 
-1. baseline risk strata (ECG, LDL, smoking etc.), 
-2. age at randomization, 
-3. physical activity level at work at baseline, 
-4. educational status, and 
-5. race.
+- 5 baseline covariates
 
 *Post-randomization prognostic factors* (.red[**L**])
 
@@ -132,7 +129,7 @@ style_mono_accent(
 
 ---
 
-## Adherence adjustment methods
+## Popular adherence adjustment methods
 .pull-left[
 .large[**Intention to Treat (.red[ITT])**]
 
@@ -146,70 +143,85 @@ style_mono_accent(
 
 - .red[artificially censoring] when become non-adherent 
 - no covariate adjustment
-- alternate version .red[excludes patients]
 ]
 
 .pull-left[
-.large[**Conditional Per-protocol (.red[Adj. PP])**]
+.large[***Conditional* Per-protocol (.red[Adj. PP])**]
 
 .large[
-- .red[B] adjusted PP
-- .red[L] adjusted PP
+- .red[B] (baseline only) adjusted PP
+- .red[L] (time-varying only) adjusted PP
 - .red[B + L] adjusted PP
 ]
 ]
 
 .pull-right[
-.large[**IP of (Adherence) Weighted Per-protocol (.red[sIPW PP])**]
+.large[**IP of (Adherence) *Weighted* Per-protocol (.red[sIPW PP])**]
 
 - .red[model-based] vs .red[cumulative survival-based]
-- B and L adjusted in stab. IPWs (address .red[artificially censoring])
-- B adjusted in weighted outcome model
+- stabilized IPWs (address .red[artificially censoring])
 - .red[uIPW] is another version with unstabilized weights
 ]
 
 ---
 
+class: full, middle
+
 .large[
-**Treatment effect estimates**
+- **Treatment effect estimates**
 ]
 
-```{r echo=FALSE, out.width='120%', fig.align="center"}
-knitr::include_graphics('images/tableOR.png')
+
+```{r echo=FALSE, out.width='150%', fig.align="center"}
+knitr::include_graphics('images/tableOR2.png')
 ```
 
+
 .large[
+- .red[How reliable are these estimates?]
+]
+
 - true DAG unknown 
 - unknown whether all adherence predicting factors were measured
 - finite sample size: $3,550$
 - high non-adherence rate 
 - differential non-adherence: $84\%$ vs. $77.2\%$
 - low event rate: $7.3\%$ (pooled logistic model)
-- measurement schedule varied 
-- LOCF was used for imputation 
+- measurement schedule varied: LOCF was used for imputation 
 
-]
+
 
 ---
 
 ## Literature search about IPW 
 
+.left-column[
 .large[
-- .red[**Robins and Finkelstein**] (2000): 
-    - asymptotic consistent if model correctly specified
-    
+.red[**Robins and Finkelstein**] (2000): 
+
+IPW is asymptotic consistent for PP if model correctly specified
+    ]
+]
+
+.right-column[
+.large[    
 - .red[Hernan and Robins] (2017), .red[Murray and Hernan] (2016, 2018):
     - Reanalysis; addressing treatment-confounder feedback
 
 - .red[Morden et al.] (2011), .red[Latimer et al.] (2017, 2018)  
     - estimates sensitive to switching proportions
-    
+  
+]
+
+]
+
+.large[
 - .red[**Young et al.**] (2019): 
     - interval censoring simulation framework
     - 200K, 1 DAG, null treatment effect, 
-    - differing measurement schedule, varying confounding
-  
+    - varying measurement schedule, confounding
 ]
+
 
 ---
 
@@ -261,9 +273,9 @@ knitr::include_graphics('images/dgmblab.png')
 
 class: full-slide-fig, center
 
-.large[**Coverage and MSE when B not measured**]
+.large[**Coverage when B not measured**]
 
-```{r echo=FALSE, out.width='60%', fig.align="center"}
+```{r echo=FALSE, out.width='100%', fig.align="center"}
 knitr::include_graphics('images/dgmc2.png')
 ```
 ```{r echo=FALSE, out.width='50%', fig.align="center"}
@@ -274,13 +286,13 @@ knitr::include_graphics('images/dgmblab.png')
 
 class: full-slide-fig, center, middle
 
-.large[**Bias and SE with increasing non-adherence** 
+.large[**Bias with increasing non-adherence** 
 
 - .red[same rate of non-adherence] in both arms
 - .red[B is measured] 
 ]
 
-```{r echo=FALSE, out.width='100%', fig.align="center"}
+```{r echo=FALSE, out.width='50%', fig.align="center"}
 knitr::include_graphics('images/adb2.png')
 ```
 
@@ -288,44 +300,31 @@ knitr::include_graphics('images/adb2.png')
 
 class: full-slide-fig, center, middle
 
-.large[**Bias and SE with increasing non-adherence**
+.large[**Bias with increasing non-adherence**
 
 - .red[Differential] non-adherence
 - .red[B is measured] in DAG 1(i)
 ]
 
-```{r echo=FALSE, out.width='100%', fig.align="center"}
+```{r echo=FALSE, out.width='50%', fig.align="center"}
 knitr::include_graphics('images/Non-Adherence Both1i.png')
 ```
 
 ---
 
-class: full-slide-fig, center, middle
-
-.large[**Bias and SE with increasing non-adherence** 
-
-- .red[Differential] non-adherence
-- .red[B is not measured] in DAG 1(i)
-]
-
-```{r echo=FALSE, out.width='100%', fig.align="center"}
-knitr::include_graphics('images/Non-Adherence BothU1i.png')
-```
-
----
 
 
 
 class: full-slide-fig, center, middle
 
-.large[**Bias and SE with increasing event rate** 
+.large[**Bias with increasing event rate** 
 
 - .red[B is measured] in DAG 1(i) from model-based estimates
 - .red[Cumulative survival based estimates] were associated with non-convergence
 
 ]
 
-```{r echo=FALSE, out.width='70%', fig.align="center"}
+```{r echo=FALSE, out.width='50%', fig.align="center"}
 knitr::include_graphics('images/Event Rate - Both.png')
 ```
 
@@ -348,13 +347,16 @@ knitr::include_graphics('images/ms.png')
 
 
 ---
+
+class: full, middle
+
 .large[
-**Treatment effect estimates**
+- **Treatment effect estimates**
 ]
 
 
-```{r echo=FALSE, out.width='110%', fig.align="center"}
-knitr::include_graphics('images/tableOR.png')
+```{r echo=FALSE, out.width='150%', fig.align="center"}
+knitr::include_graphics('images/tableOR2.png')
 ```
 
 .large[
@@ -399,35 +401,23 @@ knitr::include_graphics('images/r53zip.png')
 
 ---
 
-class: full-slide-fig, center, middle
 
-.large[**Coverage with decreasing measurement frequency** 
-
-- .red[B is not measured] in DAG 1(i); null effect
-- L imputed with LOCF and MI; .red[MCAR]
-
-]
-
-```{r echo=FALSE, out.width='55%', fig.align="center"}
-knitr::include_graphics('images/r54zip.png')
-```
-
----
 
 
 ## Future works
 
 .large[
 
-- Compare sIPW per-protocol estimates:
+- Compare .red[different versions of sIPW] per-protocol estimates:
     - interval censored versus $80\%$ cutpoint
 
-- Double robust version to address model mis-specification
+- .red[Double robust] version to address model mis-specification
+    - long follow-up is a difficulty
 
 ]
 ---
 
-class: center, middle
+class: inverse, center, middle
 
 # Thanks!
 
